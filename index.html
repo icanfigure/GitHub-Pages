@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人学术主页 - 研究成果与资源分享</title>
+    <meta name="description" content="个人学术主页，分享研究成果、学术资源、软件工具与技术心得。">
+    <style>
+        :root {
+            --primary: #1a5276;
+            --primary-light: #2980b9;
+            --primary-dark: #0d3b5e;
+            --accent: #e67e22;
+            --accent-hover: #d35400;
+            --bg: #f5f6fa;
+            --bg-card: #ffffff;
+            --text: #2c3e50;
+            --text-light: #636e72;
+            --border: #dfe6e9;
+            --shadow: 0 2px 12px rgba(0,0,0,0.08);
+            --shadow-hover: 0 6px 24px rgba(0,0,0,0.12);
+            --radius: 8px;
+            --transition: 0.3s ease;
+            --nav-height: 64px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        a { color: var(--primary-light); text-decoration: none; transition: color var(--transition); }
+        a:hover { color: var(--accent); }
+
+        /* ========== NAVIGATION ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            background: rgba(26, 82, 118, 0.97);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: all var(--transition);
+        }
+        .navbar.scrolled {
+            background: rgba(13, 59, 94, 0.98);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+        }
+        .nav-brand {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .nav-brand span { color: var(--accent); }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 4px;
+        }
+        .nav-links a {
+            color: rgba(255,255,255,0.85);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fff;
+            background: rgba(255,255,255,0.15);
+        }
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 26px;
+            height: 3px;
+            background: #fff;
+            border-radius: 3px;
+            transition: all var(--transition);
+        }
+        .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+        /* ========== HERO ========== */
+        .hero {
+            margin-top: var(--nav-height);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, #1a6d8a 100%);
+            color: #fff;
+            padding: 80px 32px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 5L55 30L30 55L5 30Z' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+            background-size: 60px 60px;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+        .hero-badge {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.95);
+        }
+
+        /* ========== LAYOUT ========== */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        .section {
+            padding: 64px 0;
+        }
+        .section-alt {
+            background: var(--bg-card);
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+        .section-title p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-top: 8px;
+        }
+
+        /* ========== ABOUT ========== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .about-avatar-card {
+            text-align: center;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 32px 20px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: calc(var(--nav-height) + 24px);
+        }
+        .avatar-placeholder {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        .about-avatar-card h3 { font-size: 1.2rem; color: var(--primary); margin-bottom: 4px; }
+        .about-avatar-card .title-tag {
+            display: inline-block;
+            background: var(--primary-light);
+            color: #fff;
+            padding: 3px 14px;
+            border-radius: 14px;
+            font-size: 0.8rem;
+            margin: 8px 0 16px;
+        }
+        .about-avatar-card .social-links {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 16px;
+        }
+        .about-avatar-card .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg);
+            color: var(--primary-light);
+            font-size: 1rem;
+            transition: all var(--transition);
+        }
+        .about-avatar-card .social-links a:hover {
+            background: var(--primary-light);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .about-detail h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin: 16px 0 8px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--border);
+        }
+        .about-detail h3:first-child { margin-top: 0; }
+        .about-detail ul { list-style: none; padding: 0; }
+        .about-detail ul li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+        .about-detail ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* ========== CARDS ========== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+            border-top: 3px solid transparent;
+        }
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+            border-top-color: var(--primary-light);
+        }
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        .card h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .card .card-tag {
+            display: inline-block;
+            background: #e8f4f8;
+            color: var(--primary-light);
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-top: 12px;
+        }
+
+        /* ========== PUBLICATIONS ========== */
+        .pub-list { list-style: none; }
+        .pub-list li {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin-bottom: 12px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary-light);
+            transition: all var(--transition);
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .pub-list li:hover {
+            border-left-color: var(--accent);
+            box-shadow: var(--shadow-hover);
+            transform: translateX(4px);
+        }
+        .pub-year {
+            min-width: 60px;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1rem;
+            text-align: center;
+            padding: 4px 8px;
+            background: #e8f4f8;
+            border-radius: 4px;
+        }
+        .pub-info h4 { font-size: 1rem; margin-bottom: 4px; }
+        .pub-info .pub-meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        .pub-info .pub-meta em { font-style: normal; color: var(--accent); font-weight: 600; }
+
+        /* ========== BLOG ========== */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .blog-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+        }
+        .blog-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+        .blog-card-img {
+            height: 160px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 3rem;
+        }
+        .blog-card-body { padding: 20px; }
+        .blog-card-body .blog-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+        .blog-card-body h4 { font-size: 1.05rem; margin-bottom: 8px; color: var(--primary); }
+        .blog-card-body p { font-size: 0.88rem; color: var(--text-light); line-height: 1.5; }
+
+        /* ========== RESOURCES ========== */
+        .resource-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .resource-table thead {
+            background: var(--primary);
+            color: #fff;
+        }
+        .resource-table th {
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .resource-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        .resource-table tbody tr:hover { background: #f8f9fa; }
+        .resource-table .dl-btn {
+            display: inline-block;
+            padding: 6px 16px;
+            background: var(--primary-light);
+            color: #fff;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all var(--transition);
+        }
+        .resource-table .dl-btn:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* ========== GUEST BOOK ========== */
+        .guestbook-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .gb-message {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent);
+        }
+        .gb-message .gb-author {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        .gb-message .gb-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+        .gb-message .gb-text { color: var(--text); }
+        .gb-form {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+            display: grid;
+            gap: 16px;
+        }
+        .gb-form h4 { color: var(--primary); }
+        .gb-form input,
+        .gb-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color var(--transition);
+        }
+        .gb-form input:focus,
+        .gb-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.1);
+        }
+        .gb-form textarea { resize: vertical; min-height: 100px; }
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--primary-light);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            letter-spacing: 1px;
+        }
+        .btn:hover { background: var(--accent); transform: translateY(-1px); }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-light);
+            color: var(--primary-light);
+        }
+        .btn-outline:hover { background: var(--primary-light); color: #fff; }
+
+        /* ========== STATS ========== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-light);
+        }
+        .stat-label { color: var(--text-light); font-size: 0.85rem; margin-top: 4px; }
+
+        /* ========== MAP PLACEHOLDER ========== */
+        .map-placeholder {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 48px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            color: var(--text-light);
+        }
+        .map-placeholder .map-icon { font-size: 3rem; margin-bottom: 16px; }
+
+        /* ========== CONTACT ========== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        .contact-info-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .contact-info-item .ci-icon {
+            font-size: 1.4rem;
+            min-width: 36px;
+            text-align: center;
+        }
+        .contact-info-item h5 { font-size: 0.95rem; color: var(--primary); margin-bottom: 2px; }
+        .contact-info-item span { font-size: 0.88rem; color: var(--text-light); }
+
+        /* ========== DONATE ========== */
+        .donate-box {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 32px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 2px dashed var(--border);
+        }
+        .donate-box h4 { color: var(--accent); margin-bottom: 8px; }
+        .donate-qr {
+            width: 160px;
+            height: 160px;
+            background: var(--bg);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            border-radius: var(--radius);
+            margin-top: 16px;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.8);
+            padding: 40px 24px 24px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+        .footer-links a { color: rgba(255,255,255,0.75); font-size: 0.85rem; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer .copyright { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+
+        /* ========== BACK TO TOP ========== */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 44px;
+            height: 44px;
+            background: var(--primary-light);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition);
+            border: none;
+            z-index: 999;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--accent); transform: translateY(-3px); }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .about-avatar-card { position: static; display: flex; gap: 20px; text-align: left; align-items: center; flex-wrap: wrap; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(13, 59, 94, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 40px 20px;
+                gap: 8px;
+                transform: translateX(100%);
+                transition: transform var(--transition);
+                overflow-y: auto;
+            }
+            .nav-links.open { transform: translateX(0); }
+            .nav-links a { font-size: 1.1rem; padding: 12px 24px; }
+            .nav-toggle { display: flex; }
+
+            .hero { padding: 50px 20px 40px; }
+            .hero h1 { font-size: 1.8rem; }
+
+            .cards-grid { grid-template-columns: 1fr; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+            .resource-table { font-size: 0.8rem; }
+            .resource-table th,
+            .resource-table td { padding: 8px 10px; }
+
+            .back-to-top { bottom: 20px; right: 20px; width: 38px; height: 38px; }
+        }
+
+        @media (max-width: 480px) {
+            .navbar { padding: 0 16px; }
+            .nav-brand { font-size: 1.05rem; }
+            .section { padding: 40px 0; }
+            .section-title h2 { font-size: 1.4rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">学术<span>主页</span></div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="active">首页</a></li>
+            <li><a href="#about">个人简介</a></li>
+            <li><a href="#research">研究方向</a></li>
+            <li><a href="#publications">论著发表</a></li>
+            <li><a href="#resources">资源分享</a></li>
+            <li><a href="#blog">博客动态</a></li>
+            <li><a href="#guestbook">访客留言</a></li>
+            <li><a href="#contact">合作联系</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="菜单">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>欢迎来到我的<span>学术主页</span></h1>
+            <p>致力于学术研究与技术分享，在这里你可以找到我在结构工程、数值模拟与计算机技术方面的研究成果与资源。</p>
+            <div class="hero-badges">
+                <span class="hero-badge">📚 学术研究</span>
+                <span class="hero-badge">💻 程序开发</span>
+                <span class="hero-badge">📐 数值模拟</span>
+                <span class="hero-badge">🔧 软件资源</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT ==================== -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>个人简介</h2>
+                <p>About Me</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-avatar-card">
+                    <div class="avatar-placeholder">👤</div>
+                    <h3>你的名字</h3>
+                    <span class="title-tag">工学博士 / 工程师</span>
+                    <p style="font-size:0.85rem;color:var(--text-light);line-height:1.6;">
+                        毕业于XX大学<br>土木工程系结构工程专业
+                    </p>
+                    <div class="social-links">
+                        <a href="#" title="GitHub">📂</a>
+                        <a href="#" title="ResearchGate">📖</a>
+                        <a href="#" title="Google Scholar">📊</a>
+                        <a href="#" title="Email">✉</a>
+                    </div>
+                </div>
+                <div class="about-detail">
+                    <h3>教育背景</h3>
+                    <ul>
+                        <li>20XX - 20XX，XX大学，结构工程，工学博士</li>
+                        <li>20XX - 20XX，XX大学，土木工程，工学硕士</li>
+                        <li>20XX - 20XX，XX大学，土木工程，工学学士</li>
+                    </ul>
+
+                    <h3>工作经历</h3>
+                    <ul>
+                        <li>20XX至今，XX设计院/研究院，高级工程师</li>
+                        <li>研究方向：结构抗震、数值模拟、有限元分析</li>
+                    </ul>
+
+                    <h3>专业技能</h3>
+                    <ul>
+                        <li>数值模拟软件：ABAQUS, ANSYS, PLAXIS, SAP2000</li>
+                        <li>编程语言：Python, MATLAB, C/C++, Fortran</li>
+                        <li>结构设计：混凝土结构、钢结构、基础工程</li>
+                        <li>其他工具：LaTeX、ParaView、Git</li>
+                    </ul>
+
+                    <h3>学术兼职</h3>
+                    <ul>
+                        <li>XX学会会员 / XX期刊审稿人</li>
+                        <li>参与多项国家自然科学基金项目</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== RESEARCH ==================== -->
+    <section class="section section-alt" id="research">
+        <div class="container">
+            <div class="section-title">
+                <h2>研究方向</h2>
+                <p>Research Interests</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">🏗️</div>
+                    <h3>结构抗震性能研究</h3>
+                    <p>基于性能的抗震设计方法，结构非线性动力时程分析，Pushover分析与增量动力分析(IDA)。</p>
+                    <span class="card-tag">结构抗震</span>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💻</div>
+                    <h3>有限元数值模拟</h3>
+                    <p>基于ABAQUS与ANSYS的精细化有限元建模，混凝土损伤本构、钢筋粘结滑移等非线性行为模拟。</p>
+                    <span class="card-tag">数值模拟</span>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔬</div>
+                    <h3>混凝土本构模型</h3>
+                    <p>改进Kent-Park模型、Mander模型等约束混凝土本构的开发与应用，材料子程序(UMAT/VUMAT)开发。</p>
+                    <span class="card-tag">本构模型</span>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>MATLAB科学计算</h3>
+                    <p>结构分析工具箱开发，信号处理与模态识别，OpenSees前后处理工具开发。</p>
+                    <span class="card-tag">科学计算</span>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌍</div>
+                    <h3>岩土工程分析</h3>
+                    <p>PLAXIS 2D/3D有限元分析，深基坑开挖与支护模拟，隧道施工全过程数值仿真。</p>
+                    <span class="card-tag">岩土工程</span>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🤖</div>
+                    <h3>智能算法与优化</h3>
+                    <p>遗传算法、粒子群算法在结构优化中的应用，机器学习辅助结构响应预测。</p>
+                    <span class="card-tag">智能算法</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PUBLICATIONS ==================== -->
+    <section class="section" id="publications">
+        <div class="container">
+            <div class="section-title">
+                <h2>论著发表</h2>
+                <p>Publications</p>
+            </div>
+            <ul class="pub-list">
+                <li>
+                    <div class="pub-year">20XX</div>
+                    <div class="pub-info">
+                        <h4>基于改进Kent-Park模型的约束混凝土柱抗震性能研究</h4>
+                        <div class="pub-meta"><em>建筑结构学报</em> | 第XX卷 第X期 | EI收录</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pub-year">20XX</div>
+                    <div class="pub-info">
+                        <h4>Seismic Performance of RC Columns with Modified Concrete Constitutive Model</h4>
+                        <div class="pub-meta"><em>Engineering Structures</em> | Vol.XX | SCI收录</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pub-year">20XX</div>
+                    <div class="pub-info">
+                        <h4>基于ABAQUS的型钢混凝土节点精细化有限元分析</h4>
+                        <div class="pub-meta"><em>土木工程学报</em> | 第XX卷 第X期 | EI收录</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pub-year">20XX</div>
+                    <div class="pub-info">
+                        <h4>应用MATLAB实现增量动力分析(IDA)的程序开发</h4>
+                        <div class="pub-meta"><em>工程力学</em> | 第XX卷 第X期 | EI收录</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pub-year">20XX</div>
+                    <div class="pub-info">
+                        <h4>深基坑开挖PLAXIS 3D数值模拟与实测对比分析</h4>
+                        <div class="pub-meta"><em>岩土工程学报</em> | 第XX卷 第X期 | EI收录</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="pub-year">20XX</div>
+                    <div class="pub-info">
+                        <h4>XX结构设计指南（专著/参编）</h4>
+                        <div class="pub-meta"><em>XX出版社</em> | ISBN: XXX-XXX-XXX</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ==================== RESOURCES ==================== -->
+    <section class="section section-alt" id="resources">
+        <div class="container">
+            <div class="section-title">
+                <h2>资源分享</h2>
+                <p>Software & Resources</p>
+            </div>
+            <div style="overflow-x:auto;">
+                <table class="resource-table">
+                    <thead>
+                        <tr>
+                            <th>资源名称</th>
+                            <th>类别</th>
+                            <th>描述</th>
+                            <th>下载</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ABAQUS 混凝土损伤塑性模型参数计算器</strong></td>
+                            <td>有限元工具</td>
+                            <td>输入混凝土强度，自动计算CDP模型参数</td>
+                            <td><a href="#" class="dl-btn">下载</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>IDA分析MATLAB程序包</strong></td>
+                            <td>科学计算</td>
+                            <td>增量动力分析全套MATLAB代码</td>
+                            <td><a href="#" class="dl-btn">下载</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>PLAXIS 隧道施工模拟模板</strong></td>
+                            <td>岩土分析</td>
+                            <td>含完整参数设置与施工步骤</td>
+                            <td><a href="#" class="dl-btn">下载</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>截面弯矩-曲率分析程序(XTRACT替代)</strong></td>
+                            <td>结构分析</td>
+                            <td>基于Python的RC截面M-φ分析</td>
+                            <td><a href="#" class="dl-btn">下载</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>地震波选取与调幅工具</strong></td>
+                            <td>地震工程</td>
+                            <td>PEER地震记录批量下载与反应谱匹配</td>
+                            <td><a href="#" class="dl-btn">下载</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>OpenSees 框架建模前处理GUI</strong></td>
+                            <td>开源工具</td>
+                            <td>Tcl代码自动生成工具</td>
+                            <td><a href="#" class="dl-btn">下载</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BLOG ==================== -->
+    <section class="section" id="blog">
+        <div class="container">
+            <div class="section-title">
+                <h2>博客动态</h2>
+                <p>Blog & Updates</p>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-card-img">📐</div>
+                    <div class="blog-card-body">
+                        <div class="blog-date">2026-04-15</div>
+                        <h4>Modified Kent-Park Concrete Model 资料整理</h4>
+                        <p>整理改进Kent-Park约束混凝土模型的参数取值方法与ABAQUS实现细节。</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-card-img">💻</div>
+                    <div class="blog-card-body">
+                        <div class="blog-date">2026-03-28</div>
+                        <h4>MATLAB在结构工程中的应用</h4>
+                        <p>分享几个实用MATLAB工具箱，包括反应谱计算、IDA分析等。</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-card-img">🌍</div>
+                    <div class="blog-card-body">
+                        <div class="blog-date">2026-03-10</div>
+                        <h4>PLAXIS 3D隧道开挖模拟完整教程</h4>
+                        <p>从建模到结果输出的完整操作流程，含参数标定方法。</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-card-img">🔧</div>
+                    <div class="blog-card-body">
+                        <div class="blog-date">2026-02-20</div>
+                        <h4>网站搬家与资源整理</h4>
+                        <p>将全部学术资源重新整理并迁移到新平台，方便访问与下载。</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-card-img">📖</div>
+                    <div class="blog-card-body">
+                        <div class="blog-date">2026-01-18</div>
+                        <h4>推荐几本好用的结构工程参考书</h4>
+                        <p>分享我在研究过程中常用的经典教材与重要参考文献。</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-card-img">🤖</div>
+                    <div class="blog-card-body">
+                        <div class="blog-date">2025-12-25</div>
+                        <h4>AI辅助结构设计初探</h4>
+                        <p>探讨机器学习在结构响应预测与参数优化中的应用前景。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== STATS & MAP ==================== -->
+    <section class="section section-alt" id="visitors">
+        <div class="container">
+            <div class="section-title">
+                <h2>访客统计与地图</h2>
+                <p>Visitors Map & Statistics</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="visitorCount">12,847</div>
+                    <div class="stat-label">累计访问</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">326</div>
+                    <div class="stat-label">资源下载</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">58</div>
+                    <div class="stat-label">访客留言</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">42</div>
+                    <div class="stat-label">博客文章</div>
+                </div>
+            </div>
+            <div class="map-placeholder">
+                <div class="map-icon">🗺️</div>
+                <h4>全球访客分布</h4>
+                <p>访问者来自中国、美国、日本、德国、英国、新加坡等多个国家和地区</p>
+                <p style="margin-top:20px;font-size:0.85rem;color:var(--text-light);">
+                    提示：如需动态地图，可嵌入 <a href="#">ClustrMaps</a> 或 <a href="#">RevolverMaps</a> 等第三方访客地图服务。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GUEST BOOK ==================== -->
+    <section class="section" id="guestbook">
+        <div class="container">
+            <div class="section-title">
+                <h2>访客留言</h2>
+                <p>Guest Book</p>
+            </div>
+            <div class="guestbook-messages" id="guestbookMessages">
+                <div class="gb-message">
+                    <div class="gb-author">张工</div>
+                    <div class="gb-date">2026-04-20</div>
+                    <div class="gb-text">博主的ABAQUS CDP参数计算器非常好用，帮我解决了不少参数标定的麻烦。期待更多有限元方面的分享！</div>
+                </div>
+                <div class="gb-message">
+                    <div class="gb-author">李同学</div>
+                    <div class="gb-date">2026-04-12</div>
+                    <div class="gb-text">请问大佬，PLAXIS 3D中隧道衬砌的interface参数如何取值？有没有相关的经验公式推荐？谢谢！</div>
+                </div>
+                <div class="gb-message">
+                    <div class="gb-author">王博士</div>
+                    <div class="gb-date">2026-04-05</div>
+                    <div class="gb-text">关于Kent-Park模型的参数取值，博主在文章中的讨论十分深入，受益良多。希望能看到更多关于UMAT开发的教程。</div>
+                </div>
+            </div>
+
+            <div class="gb-form">
+                <h4>留下你的足迹 ✍</h4>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                    <input type="text" id="gbName" placeholder="你的昵称 *" required>
+                    <input type="email" id="gbEmail" placeholder="电子邮箱（选填）">
+                </div>
+                <textarea id="gbContent" placeholder="写下你想说的话..." required></textarea>
+                <button class="btn" id="gbSubmit">提交留言</button>
+                <p id="gbNotice" style="font-size:0.85rem;color:var(--accent);display:none;"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section class="section section-alt" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>合作与联系</h2>
+                <p>Cooperation & Contact</p>
+            </div>
+            <div class="contact-grid">
+                <div>
+                    <div class="contact-info-item">
+                        <div class="ci-icon">✉</div>
+                        <div>
+                            <h5>电子邮箱</h5>
+                            <span>yourname@example.com</span>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="ci-icon">📍</div>
+                        <div>
+                            <h5>所在地</h5>
+                            <span>中国 · 广州（或其他城市，自行修改）</span>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="ci-icon">📱</div>
+                        <div>
+                            <h5>微信公众号</h5>
+                            <span>欢迎关注 "结构之旅" 微信公众号</span>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="ci-icon">🔗</div>
+                        <div>
+                            <h5>学术链接</h5>
+                            <span><a href="#">ResearchGate</a> | <a href="#">Google Scholar</a> | <a href="#">ORCID</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="donate-box">
+                    <h4>☕ 支持本站</h4>
+                    <p style="font-size:0.9rem;color:var(--text-light);line-height:1.6;">
+                        如果你觉得本站的内容对你有帮助，<br>欢迎通过微信/支付宝扫码捐助。
+                    </p>
+                    <div class="donate-qr">此处放置<br>收款二维码<br>图片</div>
+                    <p style="margin-top:12px;font-size:0.8rem;color:var(--text-light);">感谢你的支持！🙏</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#home">首页</a>
+            <a href="#about">个人简介</a>
+            <a href="#research">研究方向</a>
+            <a href="#publications">论著发表</a>
+            <a href="#resources">资源分享</a>
+            <a href="#blog">博客动态</a>
+            <a href="#guestbook">访客留言</a>
+            <a href="#contact">合作联系</a>
+        </div>
+        <p>欢迎转载，转载请注明出处。</p>
+        <p class="copyright">Copyright © 2026 | Powered by 静态网页一键部署</p>
+    </footer>
+
+    <!-- ==================== BACK TO TOP ==================== -->
+    <button class="back-to-top" id="backToTop" aria-label="回到顶部">▲</button>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        (function() {
+            // DOM elements
+            var navbar = document.getElementById('navbar');
+            var navLinks = document.getElementById('navLinks');
+            var navToggle = document.getElementById('navToggle');
+            var backToTop = document.getElementById('backToTop');
+            var guestbookForm = document.querySelector('.gb-form');
+            var guestbookMessages = document.getElementById('guestbookMessages');
+
+            // ===== Mobile menu toggle =====
+            navToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('open');
+                navToggle.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('open');
+                    navToggle.classList.remove('active');
+                });
+            });
+
+            // ===== Scroll effects =====
+            window.addEventListener('scroll', function() {
+                var scrollY = window.scrollY || window.pageYOffset;
+
+                // Navbar shadow on scroll
+                if (scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                // Back to top visibility
+                if (scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+
+                // Active nav link based on scroll position
+                var sections = document.querySelectorAll('section[id]');
+                sections.forEach(function(section) {
+                    var sectionTop = section.offsetTop - 120;
+                    var sectionHeight = section.offsetHeight;
+                    var sectionId = section.getAttribute('id');
+
+                    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                        navLinks.querySelectorAll('a').forEach(function(a) {
+                            a.classList.remove('active');
+                        });
+                        var activeLink = navLinks.querySelector('a[href="#' + sectionId + '"]');
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            });
+
+            // ===== Back to top =====
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ===== Guest book form =====
+            var gbName = document.getElementById('gbName');
+            var gbEmail = document.getElementById('gbEmail');
+            var gbContent = document.getElementById('gbContent');
+            var gbSubmit = document.getElementById('gbSubmit');
+            var gbNotice = document.getElementById('gbNotice');
+
+            gbSubmit.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                var name = gbName.value.trim();
+                var content = gbContent.value.trim();
+
+                if (!name || !content) {
+                    gbNotice.textContent = '请填写昵称和留言内容后再提交~';
+                    gbNotice.style.display = 'block';
+                    return;
+                }
+
+                // Create new message
+                var now = new Date();
+                var dateStr = now.getFullYear() + '-' +
+                    String(now.getMonth() + 1).padStart(2, '0') + '-' +
+                    String(now.getDate()).padStart(2, '0');
+
+                var msgDiv = document.createElement('div');
+                msgDiv.className = 'gb-message';
+                msgDiv.innerHTML =
+                    '<div class="gb-author">' + escapeHTML(name) + '</div>' +
+                    '<div class="gb-date">' + dateStr + '</div>' +
+                    '<div class="gb-text">' + escapeHTML(content) + '</div>';
+
+                // Insert at top
+                if (guestbookMessages.firstChild) {
+                    guestbookMessages.insertBefore(msgDiv, guestbookMessages.firstChild);
+                } else {
+                    guestbookMessages.appendChild(msgDiv);
+                }
+
+                // Clear form
+                gbName.value = '';
+                gbEmail.value = '';
+                gbContent.value = '';
+
+                // Show success
+                gbNotice.textContent = '留言提交成功！感谢你的支持~';
+                gbNotice.style.display = 'block';
+                gbNotice.style.color = '#27ae60';
+
+                setTimeout(function() {
+                    gbNotice.style.display = 'none';
+                    gbNotice.style.color = '';
+                }, 3000);
+            });
+
+            function escapeHTML(str) {
+                var div = document.createElement('div');
+                div.appendChild(document.createTextNode(str));
+                return div.innerHTML;
+            }
+
+            // ===== Visitor counter animation =====
+            var visitorCountEl = document.getElementById('visitorCount');
+            if (visitorCountEl) {
+                var targetCount = parseInt(visitorCountEl.textContent.replace(/,/g, ''));
+                var currentCount = 0;
+                var duration = 2000;
+                var stepTime = 30;
+                var steps = duration / stepTime;
+                var increment = Math.ceil(targetCount / steps);
+
+                function animateCount() {
+                    if (currentCount < targetCount) {
+                        currentCount += increment;
+                        if (currentCount > targetCount) currentCount = targetCount;
+                        visitorCountEl.textContent = currentCount.toLocaleString();
+                        requestAnimationFrame(function() {
+                            setTimeout(animateCount, stepTime);
+                        });
+                    }
+                }
+
+                // Start animation when section comes into view
+                var observer = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        animateCount();
+                        observer.disconnect();
+                    }
+                }, { threshold: 0.3 });
+
+                observer.observe(visitorCountEl);
+            }
+
+            // ===== Smooth scroll for all anchors (fallback) =====
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    var targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    var target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
+</file_contents>
+</parameter>
+</invoke>
+</tool_calls>
