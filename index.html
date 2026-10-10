@@ -7,7 +7,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: "Microsoft YaHei", Arial, sans-serif; background: #f8f9fa; color: #333; line-height: 1.8; }
+        body { font-family: "Microsoft YaHei", Arial, sans-serif; background: #f8f9fa; color: #333; line-height: 1.55; }
         
         /* 头部信息 */
         .header { background: linear-gradient(135deg, #1e3c72, #2a5298); color: #fff; padding: 50px 20px 40px; }
@@ -28,50 +28,50 @@
         .nav-links a:hover { background: #e8f4f8; color: #2980b9; }
         
         /* 主内容区 */
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 26px 20px; }
         
         /* 通用区块样式 */
-        .section { margin-bottom: 45px; }
-        .section-title { display: flex; align-items: center; gap: 12px; margin-bottom: 25px; padding-bottom: 12px; border-bottom: 2px solid #e0e0e0; }
+        .section { margin-bottom: 30px; }
+        .section-title { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #e0e0e0; }
         .section-icon { width: 36px; height: 36px; background: #2980b9; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
         .section-title h2 { font-size: 1.35rem; color: #1e3c72; }
         
         /* 时间线样式 */
         .timeline { position: relative; padding-left: 30px; }
         .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #dfe6e9; }
-        .timeline-item { position: relative; margin-bottom: 28px; }
+        .timeline-item { position: relative; margin-bottom: 18px; }
         .timeline-dot { position: absolute; left: -26px; top: 3px; width: 12px; height: 12px; background: #2980b9; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px #dfe6e9; }
-        .timeline-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+        .timeline-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
         .timeline-title { font-weight: bold; color: #1e3c72; }
         .timeline-company { color: #636e72; font-size: 0.95rem; }
         .timeline-date { color: #95a5a6; font-size: 0.85rem; }
         .timeline-desc { color: #555; font-size: 0.95rem; }
-        .timeline-desc ul { margin-top: 8px; padding-left: 20px; }
-        .timeline-desc li { margin: 5px 0; color: #666; }
+        .timeline-desc ul { margin-top: 6px; padding-left: 20px; }
+        .timeline-desc li { margin: 3px 0; color: #666; }
         
         /* 技能标签 */
         .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
         .skill-tag { background: #e8f4f8; color: #2980b9; padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; }
         
         /* 项目卡片 */
-        .projects-grid { display: grid; gap: 20px; }
-        .project-card { background: #fff; padding: 22px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); border-left: 4px solid #2980b9; }
-        .project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .projects-grid { display: grid; gap: 12px; }
+        .project-card { background: #fff; padding: 15px 18px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); border-left: 4px solid #2980b9; }
+        .project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
         .project-title { font-weight: bold; color: #1e3c72; }
         .project-category { background: #f0f0f0; color: #666; padding: 3px 10px; border-radius: 10px; font-size: 0.8rem; }
-        .project-desc { color: #666; font-size: 0.95rem; line-height: 1.7; }
+        .project-desc { color: #666; font-size: 0.95rem; line-height: 1.55; }
         
         /* 论文/专利列表 */
         .pub-list { list-style: none; }
-        .pub-item { background: #fff; padding: 18px; margin-bottom: 12px; border-radius: 6px; box-shadow: 0 1px 6px rgba(0,0,0,0.05); }
-        .pub-title { color: #1e3c72; margin-bottom: 4px; }
+        .pub-item { background: #fff; padding: 13px 16px; margin-bottom: 8px; border-radius: 6px; box-shadow: 0 1px 6px rgba(0,0,0,0.05); }
+        .pub-title { color: #1e3c72; margin-bottom: 2px; }
         .pub-meta { color: #666; font-size: 0.9rem; }
         
         /* 交流社群 */
-        .community-box { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); text-align: center; }
-        .community-icon { font-size: 3rem; margin-bottom: 15px; }
-        .community-title { color: #1e3c72; margin-bottom: 10px; }
-        .community-qr { font-size: 1.4rem; color: #2980b9; font-weight: bold; margin-bottom: 10px; }
+        .community-box { background: #fff; padding: 22px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); text-align: center; }
+        .community-icon { font-size: 3rem; margin-bottom: 10px; }
+        .community-title { color: #1e3c72; margin-bottom: 8px; }
+        .community-qr { font-size: 1.4rem; color: #2980b9; font-weight: bold; margin-bottom: 8px; }
         
         /* 页脚 */
         .footer { background: #2c3e50; color: rgba(255,255,255,0.8); padding: 25px 20px; text-align: center; font-size: 0.9rem; }
@@ -177,11 +177,9 @@
                     </div>
                     <div class="timeline-desc">
                         <ul>
-                            <li><b>设计负责人</b>：主持完成200余项涉铁安全评估项目，涵盖高铁、普铁、单轨等工程类型的安评、咨询与设计任务，涉及桥梁、隧道、基坑、路基、运河等场景</li>
-                            <li>主持京雄高速跨京广高铁、天津轨道交通Z2线、西部陆海新通道平陆运河邻近黎钦铁路、新建阜阳至蒙城至宿州铁路全线涉既有铁路安全评估等重大涉铁项目</li>
-                            <li><b>技术骨干</b>：参与新建成都至达州至万州铁路、龙岩至龙川铁路等高铁项目桥梁设计，承担定测、初设、施工图及配合施工全流程</li>
-                            <li>卓越完成郑济高铁双柱式桥墩设计，首创时速350公里双线高铁桥梁全预制装配体系</li>
-                            <li>精通涉铁安评，掌握MIDAS Civil、桥博、ABAQUS、PLAXIS等结构及岩土计算软件</li>
+                            <li><b>设计负责人</b>：主持200余项涉铁安全评估/咨询/设计项目（高铁、普铁、单轨），含平陆运河、天津轨道交通Z2线、京雄高速跨京广高铁、阜蒙宿铁路等国家及省市级重点项目</li>
+                            <li><b>技术骨干</b>：参与成达万、龙龙等高铁项目桥梁全流程设计；首创350km/h双线高铁桥梁全预制装配体系（郑济高铁），获科学技术成果评价证书</li>
+                            <li>精通涉铁安评及MIDAS Civil、PLAXIS、ABAQUS等有限元计算；多次组织涉铁专题直播培训及企业内PLAXIS涉铁安全应用培训</li>
                         </ul>
                     </div>
                 </div>
@@ -195,83 +193,83 @@
                 <h2>项目经验</h2>
             </div>
             <div class="projects-grid">
-                <div style="display:flex;align-items:center;gap:8px;margin:4px 0 6px;">
-                    <span style="background:#1e3c72;color:#fff;border-radius:6px;padding:3px 10px;font-size:0.85rem;font-weight:bold;">设计负责人 · 主持</span>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-title">新建阜阳至蒙城至宿州(淮北)铁路 — 全线涉既有铁路安全评估</span>
-                        <span class="project-category">安全评估 · 安徽省重点项目</span>
+                    <div style="display:flex;align-items:center;gap:8px;margin:4px 0 6px;">
+                        <span style="background:#1e3c72;color:#fff;border-radius:6px;padding:3px 10px;font-size:0.85rem;font-weight:bold;">设计负责人 · 主持</span>
                     </div>
-                    <div class="project-desc">主持新建铁路接轨既有铁路必备文件《接轨方案安全评估报告》编制。全线共七处与既有铁路交叉或并行，通过与设计、铁路局协调分析交叉、并行对既有高铁、普铁的影响，分别计算结果并开展涉铁合规性审查，保证了安徽省重点项目及时推进。</div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-title">京雄高速公路支线京港澳高速段京广高铁跨线桥(K44+972)</span>
-                        <span class="project-category">方案咨询·安全评估·施工图咨询 · 获集团优秀工程咨询成果奖二等奖(排序1)</span>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">新建阜阳至蒙城至宿州(淮北)铁路 — 全线涉既有铁路安全评估</span>
+                            <span class="project-category">安全评估 · 安徽省重点项目</span>
+                        </div>
+                        <div class="project-desc">主持编制接轨既有铁路必备文件《接轨方案安全评估报告》，全线7处与既有高铁、普铁交叉/并行节点，经协调与涉铁合规审查，保证安徽省重点项目及时推进。</div>
                     </div>
-                    <div class="project-desc">铁路局首次同意公路桥采用分幅转体上跨方式跨越高速铁路桥梁段。针对转体墩位、分幅/整幅方案比选、既有铁路位移控制严格、坠落物风险等关键问题，采用MIDAS Civil、桥博软件进行计算分析，保障项目顺利实施，获2026年度集团公司优秀工程咨询成果奖二等奖(排序1)。</div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-title">首都航天机械有限公司新建晋庄铁路专用线工程</span>
-                        <span class="project-category">定测·初步设计</span>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">京雄高速公路支线京港澳高速段京广高铁跨线桥(K44+972)</span>
+                            <span class="project-category">方案咨询·安全评估·施工图咨询 · 获集团优秀工程咨询成果奖二等奖(排序1)</span>
+                        </div>
+                        <div class="project-desc">铁路局首次同意公路桥分幅转体上跨高铁，解决转体墩位、分幅/整幅比选、既有铁路位移控制与坠落物风险，采用MIDAS Civil、桥博计算，获2026年度集团公司优秀工程咨询成果奖二等奖(排序1)。</div>
                     </div>
-                    <div class="project-desc">位于黄土地区，线路纵坡大、黄土地势起伏巨大，涉及高墩、T构、小曲线半径、环境保护区等复杂情况，协调多专业对接，完成初步设计阶段设计任务。</div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-title">天津市轨道交通Z2线一期涉铁节点工程</span>
-                        <span class="project-category">咨询·安全评估 · 天津市重点工程</span>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">首都航天机械有限公司新建晋庄铁路专用线工程</span>
+                            <span class="project-category">定测·初步设计</span>
+                        </div>
+                        <div class="project-desc">黄土地区，含高墩、T构、小曲线半径、环境保护区等复杂工况，协调多专业完成初步设计。</div>
                     </div>
-                    <div class="project-desc">主持上跨津山铁路北塘站、北环上下行线、北环进港上下行线及北塘新港联线、渤龙湖站~春华路站区间下穿蓟港铁路等五处涉铁节点咨询与安评。从安评计算保证计算结果满足规范与铁路运营要求，利用MIDAS Civil保证上跨桥结构安全，将五处节点有机结合、协调各专业顺利完成。</div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-title">西部陆海新通道(平陆)运河近邻黎钦铁路工程技术咨询</span>
-                        <span class="project-category">技术咨询 · 国家重点项目(一带一路)</span>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">天津市轨道交通Z2线一期涉铁节点工程</span>
+                            <span class="project-category">咨询·安全评估 · 天津市重点工程</span>
+                        </div>
+                        <div class="project-desc">主持上跨津山铁路北塘站、北环系上下行线及下穿蓟港铁路等5处涉铁节点，安评计算满足规范，利用MIDAS Civil保障上跨桥结构安全。</div>
                     </div>
-                    <div class="project-desc">主持马道枢纽、企石枢纽及上游航道工程邻近黎钦铁路两处技术咨询报告。平陆运河为新中国成立以来第一条通江达海的运河、西部陆海新通道骨干工程，开挖深、断面大、基坑降水大，极易致邻近铁路位移超限。深度调研图纸与施工方案、研判地勘，保证基坑开挖及降水对铁路影响处于铁路影响范围之内。</div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-title">百余项国家、省部级涉铁安评/咨询/设计项目</span>
-                        <span class="project-category">安全评估 · 综合</span>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">西部陆海新通道(平陆)运河近邻黎钦铁路工程技术咨询</span>
+                            <span class="project-category">技术咨询 · 国家重点项目(一带一路)</span>
+                        </div>
+                        <div class="project-desc">主持马道、企石枢纽及上游航道近邻黎钦铁路两处技术咨询，研判地勘与施工方案，确保大断面深开挖及降水对邻近铁路位移影响可控。</div>
                     </div>
-                    <div class="project-desc">覆盖高铁、单轨、普铁等工程类型，代表性项目：通苏嘉甬铁路相交道路节点改造(周松线)、汾湖站市政道路元鹤荡路、汉川高铁片区涉铁道路下穿沿江高铁、北京昌平清华国重基地电力管线下穿京包客专、G25长深高速承唐界至唐曹段改扩建涉铁段、钦北线铁路桥改建、新建天津至潍坊高速铁路跨越南港铁路、信阳龙江路立交桥雨水泵站下穿宁西铁路、芜湖徽州路下穿芜湖轨道交通等。近五年累计参与100余项，工作以来共完成200余项涉铁安评项目，精通涉铁安评。</div>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px;margin:18px 0 6px;">
-                    <span style="background:#2980b9;color:#fff;border-radius:6px;padding:3px 10px;font-size:0.85rem;font-weight:bold;">主要技术骨干 · 参与</span>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-title">新建成都至达州至万州铁路</span>
-                        <span class="project-category">定测·可研·初设·施工图·配施</span>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">百余项国家、省部级涉铁安评/咨询/设计项目</span>
+                            <span class="project-category">安全评估 · 综合</span>
+                        </div>
+                        <div class="project-desc">覆盖高铁、单轨、普铁，代表项目：通苏嘉甬铁路节点改造、汾湖市政道路下穿通苏嘉甬、汉川涉铁道路下穿沿江高铁、北京昌平电力管线下穿京包客专、G25长深高速改扩建涉铁段、津潍高铁跨南港铁路、芜湖徽州路下穿芜湖轨道交通等；近五年累计完成200余项涉铁安评。</div>
                     </div>
-                    <div class="project-desc">定测阶段承担南充队桥涵水文计算、涵洞测量及十几处桥涵调查，完成多座桥梁孔跨布置比选设计；初步设计完成13座工点桥设计；施工图完成10座工点桥设计，参与涪江主桥钢混结合段、嘉陵江局部计算；作为桥梁专业配施人员承担达州配施。</div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-title">新建龙岩至龙川铁路武平至梅州段</span>
-                        <span class="project-category">初步设计·施工图设计</span>
+                    <div style="display:flex;align-items:center;gap:8px;margin:18px 0 6px;">
+                        <span style="background:#2980b9;color:#fff;border-radius:6px;padding:3px 10px;font-size:0.85rem;font-weight:bold;">主要技术骨干 · 参与</span>
                     </div>
-                    <div class="project-desc">初步设计完成10座工点桥设计，含陡坡、岩溶大跨等特殊工点；施工图完成7座工点桥设计，多次优化陡坡地段方案、边坡加固、岩溶桩基变更，是同期完成工点数目最多的设计人员。</div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-title">郑州至济南铁路濮阳至省界段 — 时速350公里双柱式桥墩</span>
-                        <span class="project-category">桥梁设计</span>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">新建成都至达州至万州铁路</span>
+                            <span class="project-category">定测·可研·初设·施工图·配施</span>
+                        </div>
+                        <div class="project-desc">定测承担桥涵水文与测绘，初设、施工图共完成23座工点桥设计，参与涪江主桥钢混结合段、嘉陵江局部计算，并承担达州配施。</div>
                     </div>
-                    <div class="project-desc">负责前期有限元计算及桥墩设计。首创高烈度桥梁结构装配化合理结构体系、节点连接构造、连接材料与配套设计方法，首次实现时速350公里双线高铁桥梁全预制装配的规模化工程应用。</div>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-title">桥梁施工监测与支架检算</span>
-                        <span class="project-category">施工监测</span>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">新建龙岩至龙川铁路武平至梅州段</span>
+                            <span class="project-category">初步设计·施工图设计</span>
+                        </div>
+                        <div class="project-desc">完成初设10座、施工图7座工点桥设计（含陡坡、岩溶大跨特殊工点），同期完成工点数目最多。</div>
                     </div>
-                    <div class="project-desc">完成泸州沱江特大桥主桥施工监测、松园路-三华村雨水渠箱邻近广清城际安全施工监测、芜湖轨道交通2号线单轨桥21号墩(70+70)m T构线形与应力监测等，并完成邯郸斜拉桥现浇支架检算，主动学习外单位成熟经验并指导施工顺利开展。</div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">郑州至济南铁路濮阳至省界段 — 时速350公里双柱式桥墩</span>
+                            <span class="project-category">桥梁设计</span>
+                        </div>
+                        <div class="project-desc">负责桥墩有限元计算与设计，首创高烈度350km/h双线高铁桥梁全预制装配体系并规模化应用。</div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">桥梁施工监测与支架检算</span>
+                            <span class="project-category">施工监测</span>
+                        </div>
+                        <div class="project-desc">完成泸州沱江特大桥、芜湖单轨T构线形应力及邻近城际雨水渠箱等监测，并完成邯郸斜拉桥现浇支架检算，指导施工开展。</div>
+                    </div>
                 </div>
-            </div>
         </section>
 
         <!-- 自主研发软件 -->
@@ -287,13 +285,11 @@
                         <span class="project-category">软件研发</span>
                     </div>
                     <div class="project-desc">
-                        <p>基于加州大学伯克利分校教授开发的开源数值内核 SVL（GitHub 开源），借助人工智能编程工具 Trae 自主研发，对标 PLAXIS 3D 进行功能设计，打造集建模、材料、计算、后处理于一体的岩土工程有限元分析软件，已完成打包并可直接安装使用。</p>
-                        <ul style="margin-top:10px;padding-left:20px;color:#666;line-height:1.8;">
-                            <li><b>建模模块</b>：支持岩土模型搭建与网格划分，适配PLAXIS常用建模逻辑，带实时建模显示</li>
-                            <li><b>材料库</b>：内置Mohr-Coulomb等岩土工程常用本构模型</li>
-                            <li><b>计算分析</b>：依托SVL数值内核，实现塑性计算、稳定性分析等，计算结果实时显示</li>
-                            <li><b>后处理</b>：支持结果可视化，计算结果通过VTK格式导出，可导入ParaView进一步查看</li>
-                            <li>整个研发历程在微信公众账号「PLAXIS岩土有限元」持续公开更新</li>
+                        <p>基于加州大学伯克利分校教授开发的开源数值内核 SVL，对标 PLAXIS 3D，借助人工智能编程工具 Trae 自主研发，集建模、材料、计算、后处理于一体，已完成打包可直接安装。</p>
+                        <ul style="margin-top:6px;padding-left:20px;color:#666;line-height:1.6;">
+                            <li><b>建模</b>：岩土模型搭建与网格划分，适配PLAXIS建模逻辑并实时显示</li>
+                            <li><b>计算与后处理</b>：内置Mohr-Coulomb等常用本构，依托SVL内核计算；结果可视化，支持VTK导出至ParaView</li>
+                            <li>研发历程在微信公众账号「PLAXIS岩土有限元」持续公开</li>
                         </ul>
                     </div>
                 </div>
@@ -312,14 +308,11 @@
                         <span class="project-category">软件研发 · v6.0</span>
                     </div>
                     <div class="project-desc">
-                        <p>自主开发的岩土工程室内试验模拟平台（Professional Laboratory of Soil），对标国际主流土工试验软件，借助人工智能编程工具Trae自主研发，全面覆盖《土工试验方法标准》(GB/T 50123-2019)，实现试验模拟、本构分析、参数标定、报告生成一体化（2026年5月发布）。</p>
-                        <ul style="margin-top:10px;padding-left:20px;color:#666;line-height:1.8;">
-                            <li><b>试验覆盖</b>：内置22种试验类型，涵盖三轴(CD/CU/UU/通用)、直剪、压缩/固结、物理性质试验，以及循环三轴、循环扭剪、吸力控制三轴、SWCC、CPT等效标定等高级试验，全面对标GB/T 50123-2019</li>
-                            <li><b>本构模型</b>：内置25种本构模型，涵盖Mohr-Coulomb、HS/HSS、修正剑桥、Sekiguchi-Ohta、以及SANISAND、PM4Sand、NorSand、UBC3D-PLM等前沿液化模型</li>
-                            <li><b>专业三轴系统</b>：饱和→固结→剪切多阶段试验流程、实时四屏监控与数字仪表盘、试样物理指标一键计算，对标GDSLAB/主流三轴接口</li>
-                            <li><b>可视化与报告</b>：莫尔圆、应力路径、三维曲面绘图，多结果叠加对比，PNG/SVG/PDF批量导出，一键生成PDF/Word/Excel专业试验报告</li>
-                            <li><b>技术架构</b>：Numba JIT机器码级加速、多进程并行批处理，本构积分采用Return Mapping与自适应步长差分，复杂模型加速达10~100倍</li>
-                            <li><b>高级工具</b>：参数反演标定、敏感性分析(Morris/Sobol)、CPT等效标定、SWCC分析、参数工程校验、内嵌Python脚本控制台</li>
+                        <p>自主开发的岩土室内试验模拟平台（Professional Laboratory of Soil），借助Trae自主研发，全面对标《土工试验方法标准》(GB/T 50123-2019)，实现试验模拟、本构分析、参数标定、报告生成一体化（2026年5月发布）。</p>
+                        <ul style="margin-top:6px;padding-left:20px;color:#666;line-height:1.6;">
+                            <li>内置<b>22种试验</b>（三轴/CD/CU/UU、直剪、固结、SWCC、循环三轴等）与<b>25种本构</b>（Mohr-Coulomb、HS/HSS、修正剑桥、SANISAND、PM4Sand等），含液化前沿模型</li>
+                            <li>专业三轴系统、莫尔圆/应力路径可视化及一键PDF/Word/Excel试验报告</li>
+                            <li>Numba JIT+多进程并行，加速10~100倍；含参数反演标定、敏感性分析、CPT等效标定、Python脚本控制台</li>
                         </ul>
                     </div>
                 </div>
@@ -332,9 +325,9 @@
                 <div class="section-icon">🔧</div>
                 <h2>专业技能</h2>
             </div>
-            <div style="background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.06);">
-                <div style="margin-bottom:15px;">
-                    <div style="font-weight:bold;color:#1e3c72;margin-bottom:8px;">结构分析软件</div>
+            <div style="background:#fff;padding:16px 18px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.06);">
+                <div style="margin-bottom:10px;">
+                    <div style="font-weight:bold;color:#1e3c72;margin-bottom:6px;">结构分析软件</div>
                     <div class="skills-grid">
                         <span class="skill-tag">SAP2000</span>
                         <span class="skill-tag">ABAQUS</span>
@@ -343,8 +336,8 @@
                         <span class="skill-tag">桥博</span>
                     </div>
                 </div>
-                <div style="margin-bottom:15px;">
-                    <div style="font-weight:bold;color:#1e3c72;margin-bottom:8px;">岩土工程软件</div>
+                <div style="margin-bottom:10px;">
+                    <div style="font-weight:bold;color:#1e3c72;margin-bottom:6px;">岩土工程软件</div>
                     <div class="skills-grid">
                         <span class="skill-tag">PLAXIS 2D/3D</span>
                         <span class="skill-tag">MIDAS GTS</span>
@@ -352,7 +345,7 @@
                     </div>
                 </div>
                 <div>
-                    <div style="font-weight:bold;color:#1e3c72;margin-bottom:8px;">编程语言与工具</div>
+                    <div style="font-weight:bold;color:#1e3c72;margin-bottom:6px;">编程语言与工具</div>
                     <div class="skills-grid">
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">MATLAB</span>
@@ -417,9 +410,9 @@
                 <div class="section-icon">🥇</div>
                 <h2>荣誉奖项</h2>
             </div>
-            <div style="background:#fff;padding:18px 20px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,0.06);margin-bottom:14px;">
-                <div style="font-weight:bold;color:#1e3c72;margin-bottom:10px;">科研课题</div>
-                <ul style="padding-left:20px;color:#666;font-size:0.95rem;line-height:1.9;">
+            <div style="background:#fff;padding:14px 18px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,0.06);margin-bottom:10px;">
+                <div style="font-weight:bold;color:#1e3c72;margin-bottom:6px;">科研课题</div>
+                <ul style="padding-left:20px;color:#666;font-size:0.95rem;line-height:1.6;">
                     <li>牵头中国中铁股份公司引导科研课题《研2020-18 工程下穿高铁桥梁变形及模型修正研究》（课题共同申报人、项目联系人），完成科研报告1份</li>
                     <li>参与《基于市域线路特征(120Km)跨座式单轨桥梁关键技术研究》，据此申请发明专利</li>
                     <li>参与《研2019-66 长联大跨无砟轨道连续钢桁梁桥施工控制关键技术研究》，据此申请实用新型专利</li>
